@@ -10,7 +10,7 @@ class Court extends Model
     use HasFactory;
 
     public function state(){
-        return $this->belongsTo(State::class,'id_state');
+        return $this->belongsTo(Statu::class,'id_state');
     }
     
     public function customer(){

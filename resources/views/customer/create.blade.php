@@ -56,6 +56,8 @@
                 <div class="w-1/2">
                     <input type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold 
                     py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="Ingresar">
+                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+                    href="{{ url('/') }}">Cancelar</a>
                 </div>
             </div>
         </form>

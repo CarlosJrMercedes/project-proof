@@ -10,7 +10,8 @@
 <body class="container mx-auto">
     
     <div class="p-10">
-        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{ route('customer.create') }}">Nuevoi Cliente</a>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+        href="{{ route('customer.create') }}">Nuevoi Cliente</a>
         <div class="m-3"></div>
         <table class="table-fixed w-full h-auto text-center rounded-md">
             <thead>
@@ -19,8 +20,8 @@
                 <th class="w-1/4 px-4 py-2 border-r-2  border-b-2 border-black uppercase">Nombre</th>
                 <th class="w-1/4 px-4 py-2 border-r-2  border-b-2 border-black uppercase">Apellido</th>
                 <th class="w-1/4 px-4 py-2 border-r-2  border-b-2 border-black uppercase">dui</th>
-                <th class="w-1/4 px-4 py-2 border-r-2  border-b-2 border-black uppercase">casos</th>
-                <th class="w-1/6 px-4 py-2 border-b-2 border-black uppercase">Accion</th>
+                <th class="w-1/6 px-4 py-2 border-r-2  border-b-2 border-black uppercase">casos</th>
+                <th class="w-1/4 px-4 py-2 border-b-2 border-black uppercase">Accion</th>
               </tr>
             </thead>
             <tbody>
@@ -44,6 +45,9 @@
                                         Desactivar
                                     </button>
                                 </form>
+                                <div class="m-3"></div>
+                                <a href="{{ route('case.index', $value->id) }}" 
+                                    class="hover:text-blue-600">Casos</a>
                                 {{-- <a href="{{ route('customer.destroy', $value->id) }}" class="hover:text-blue-600">Desactivar</a> --}}
                             </div>
                         </td>

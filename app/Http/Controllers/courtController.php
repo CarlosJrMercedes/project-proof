@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Court;
+use App\Models\Customer;
+use App\Models\Statu;
 use Illuminate\Http\Request;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
 class courtController extends Controller
 {
@@ -11,9 +15,12 @@ class courtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $customer = Customer::with('state')->find($id);
+        $cases = Court::with('state')->where('id_client','=',$id)->get();
+        // dd($cases);
+        return view('case.index', compact('cases','customer'));
     }
 
     /**
@@ -21,9 +28,9 @@ class courtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('case.create', compact('id'));
     }
 
     /**
@@ -34,7 +41,17 @@ class courtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $case = new Court();
+        $case->case_number = $request->number;
+        $case->folio = $request->folio;
+        $case->name = $request->name;
+        $case->requirement = $request->requeri;
+        $case->commentary = $request->comment;
+        $case->id_state = "1";
+        $case->id_client = $request->id_client;
+        if ($case->save()) {
+            return redirect("case/".$request->id_client."/index");
+        }
     }
 
     /**
@@ -56,7 +73,10 @@ class courtController extends Controller
      */
     public function edit($id)
     {
-        //
+        $state = Statu::get();
+        // dd($state);
+        $cases = Court::with('state')->find($id);
+        return view('case.edit', compact('cases','state'));
     }
 
     /**
@@ -68,7 +88,16 @@ class courtController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $case = Court::find($id);
+        $case->case_number = $request->number;
+        $case->folio = $request->folio;
+        $case->name = $request->name;
+        $case->requirement = $request->requeri;
+        $case->commentary = $request->comment;
+        $case->id_state = $request->state;
+        if ($case->save()) {
+            return redirect("case/".$request->id_client."/index");
+        }
     }
 
     /**
